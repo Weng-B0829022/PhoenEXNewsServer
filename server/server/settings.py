@@ -52,7 +52,7 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'static', 'dist')],  # 修改這裡
+        'DIRS': [BASE_DIR / 'server/static/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,10 +74,10 @@ WSGI_APPLICATION = 'server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('POSTGRES_HOST'),
+        'NAME': 'django_db',
+        'USER': 'postgres',
+        'PASSWORD': '111111',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
@@ -117,13 +117,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static', 'dist'),
+    BASE_DIR / 'server/static',
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# 添加這些行來幫助調試
-print(f"BASE_DIR: {BASE_DIR}")
-print(f"STATICFILES_DIRS: {STATICFILES_DIRS}")
-print(f"STATIC_ROOT: {STATIC_ROOT}")
+STATIC_ROOT = BASE_DIR / 'staticfiles'
